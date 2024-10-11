@@ -4,7 +4,7 @@ import {
     FETCH_USERS_SUCCESS,
     FETCH_USERS_FAILURE
 } from './userTypes'
-import { response } from 'express'
+
 
 
 export const fetchUsersRequest = () => {
@@ -13,32 +13,31 @@ export const fetchUsersRequest = () => {
     }
 }
 
-export const fetchUsersSuccess = (users) => {
+const fetchUsersSuccess = (users) => {
     return{
         type: FETCH_USERS_SUCCESS,
         payload: users
     }
 }
 
-export const fetchUsersFailure = (error) => {
+const fetchUsersFailure = (error) => {
     return{
         type: FETCH_USERS_FAILURE,
         payload: error
     }
 }
 
-const fetchUsers = () => {
+export const fetchUsers = () => {
     return (dispatch) => {
-        dispatch(fetchUsersRequest)
+        dispatch(fetchUsersRequest) //sets loading to true
         axios.get('https://jsonplaceholder.typicode.com/users')
         .then(response => {
-            const users = response.data
+            const users = response.data     
             dispatch(fetchUsersSuccess(users))
         })
-        .catch(error => {
+        .catch((error) => {
             const errorMsg = error.message
-            dispatch(fetchUsersFailure(error.msg))
+            dispatch(fetchUsersFailure(errorMsg))
         })
-        
     }
 }

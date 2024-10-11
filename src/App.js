@@ -8,20 +8,22 @@ import IceCreamContainer from './components/iceCreamContainer';
 import NewCakeContainer from './components/NewCakeContainer';
 import NewIceCreamContainer from './components/NewIceCreamContainer';
 import ItemContainer from './components/itemContainer';
-
+import UserContainer from './components/UserContainer';
+import { fetchUsersRequest } from './redux';
 
 
 function App() {
   return (
     <Provider store={store}>
     <div className="App">
-      <ItemContainer cake />
+      <UserContainer />
+      {/*<ItemContainer cake />
       <ItemContainer  />
       <HooksCakeContainer />
       <CakeContainer />
       <IceCreamContainer />
       <NewCakeContainer />
-      <NewIceCreamContainer />
+      <NewIceCreamContainer />*/}
       
     </div>
     </Provider>
